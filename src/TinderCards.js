@@ -16,7 +16,14 @@ function TinderCards() {
     },
   ]);
 
-  const swiped
+  const swiped = (direction, nameToDelete) => {
+    console.log("removing:" + nameToDelete);
+    // setLastDirection(direction);
+  };
+
+  const outOfFrame = (name) => {
+    console.log(name + "left the screen");
+  };
 
   return (
     <div className="tinderCards">
@@ -26,9 +33,16 @@ function TinderCards() {
             className="swipe"
             key={person.name}
             preventSwipe={["up", "down"]}
-            onSwipe={(dir) => SwipeableDrawer(dir, person.name)}
+            onSwipe={(dir) => swiped(dir, person.name)}
             onCardLeftScreen={() => outOfFrame(person.name)}
-          ></TinderCard>
+          >
+            <div
+              style={{ backgroundImage: `url(${person.url})` }}
+              className="card"
+            >
+              <h3>{person.name}</h3>
+            </div>
+          </TinderCard>
         ))}
       </div>
     </div>
